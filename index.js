@@ -54,7 +54,7 @@ function playround(humanchoice, computerchoice) {
     else {
         return "Invalid choice"}}
     
-        function updateScore() {
+    function updateScore() {
             const result = playround();
             
             if (result === "You won") {
@@ -63,8 +63,25 @@ function playround(humanchoice, computerchoice) {
                 computerScore++;
             }
         
+    
+    console.log(result);
+console.log(`Now you have ${humanScore} and the computer has ${computerScore}`);
+}
+updateScore();
+updateScore();
+updateScore();
+updateScore();
+updateScore();
+    function finalResult() {
+        if (humanScore>computerScore){
+            console.log(`YAY YOU WON GOOD JOB BUDDY`)
+        }
+        else if (computerScore>humanScore){
+            console.log(`you lost! try again later`)
+        }
+        else {
+            console.log(`it is a draw game wellplayed`)
+        }
     }
-console.log(playround());
-console.log("now you have" + humanScore + "and the computer have" + computerScore);
-console.log(humanScore);
+finalResult();
 
