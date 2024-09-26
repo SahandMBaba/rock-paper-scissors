@@ -1,5 +1,5 @@
-console.log('hello player')
-
+//////////////////////////////////////////  this line is the function of a randomized pick of computer
+console.log('hello player');
 function getcomputerchoice(value){
     let randomnumber = Math.floor(Math.random() * 3);
     if(randomnumber === 0) {
@@ -11,51 +11,32 @@ function getcomputerchoice(value){
     if(randomnumber === 2) {
         return "scissors";
     }
-    
 }
-function getHumanChoice(value2) {
-    let number = prompt ("please choose one of the following tool to beat your opponent Rock, Paper or Scissors",);
-    number = number.toLowerCase();
-    if(number === "rock") {
-        return  "rock";
-    }
-    if(number === "paper") {
-        return "paper";
-    }
-    if(number === "scissors") {
-        return "scissors";
-    }
-}
+//////////////////////////////////////////  these lines tracks the scors
 let humanScore = 0;
 let computerScore = 0;
-    
+////////////////////////////////////////// this lines is the actual game
 
-function playround(humanchoice, computerchoice) {
-    var humanchoice = getHumanChoice();
-    var computerchoice = getcomputerchoice();
-    if (humanchoice === "rock" && computerchoice === "rock") {
-        return "it is a draw"}
-    if (humanchoice === "rock" && computerchoice === "paper") {
-        return "You lost" }
-    if (humanchoice === "rock" && computerchoice === "scissors") {
-         return "You won"}
-    if (humanchoice === "paper" && computerchoice === "rock") {
-        return "You won"}
-    if (humanchoice === "paper" && computerchoice === "paper") {
-        return "it is a draw"}
-    if (humanchoice === "paper" && computerchoice === "scissors") {
-        return "You lost"}
-    if (humanchoice === "scissors" && computerchoice === "rock") {
-        return "You lost"}
-    if (humanchoice === "scissors" && computerchoice === "paper") {
-        return "You won"}
-    if (humanchoice === "scissors" && computerchoice === "scissors") {
-        return "it is a draw"} 
+
+function playround(humanchoice) {
+    const computerchoice = getcomputerchoice();
+    if (humanchoice === computerchoice) {
+        return "it is a draw";
+    }
+    if (
+        (humanchoice === "rock" && computerchoice === "scissors") ||
+        (humanchoice === "paper" && computerchoice === "rock") ||
+        (humanchoice === "scissors" && computerchoice === "paper")) 
+        {
+        return "You won";} 
     else {
-        return "Invalid choice"}}
-    
-    function updateScore() {
-            const result = playround();
+        return "You lost";
+    }
+}
+
+////////////////////////////////////////////////////////// this line runs the game and update the scors
+    function updateScore(choice) {
+            const result = playround(choice);
             
             if (result === "You won") {
                humanScore++;
@@ -67,11 +48,22 @@ function playround(humanchoice, computerchoice) {
     console.log(result);
 console.log(`Now you have ${humanScore} and the computer has ${computerScore}`);
 }
-updateScore();
-updateScore();
-updateScore();
-updateScore();
-updateScore();
+/////////////////////////////////////////////////// its the rock button play
+const rockbtn = document.querySelector("#rockbtn");
+rockbtn.addEventListener("click", () => {  
+    updateScore("rock");});
+//////////////////////////////////////////////// its the paper button play
+const paperbtn = document.querySelector("#paperbtn");
+paperbtn.addEventListener("click", () => {  
+    updateScore("paper");});
+    //////////////////////////////////////////// its the scissors button play
+    const scissorsbtn = document.querySelector("#scissorsbtn");
+scissorsbtn.addEventListener("click", () => {  
+    updateScore("scissors");});
+
+
+
+ //////////////////////////////////////// this line will run the final result and tells u who win that we need it in future
     function finalResult() {
         if (humanScore>computerScore){
             console.log(`YAY YOU WON GOOD JOB BUDDY`)
@@ -83,5 +75,5 @@ updateScore();
             console.log(`it is a draw game wellplayed`)
         }
     }
-finalResult();
+
 
