@@ -43,10 +43,28 @@ function playround(humanchoice) {
             } else if (result === "You lost") {
                 computerScore++;
             }
-        
+
+            if (humanScore === 5) {
+                finalResultParagraph.innerText=(`YAY YOU WON GOOD JOB BUDDY`)
+                humanScore = 0;
+                computerScore = 0;
+            }
+            else if (computerScore === 5) {
+                finalResultParagraph.innerText=(`you lost! try again later`)
+                humanScore = 0;
+                computerScore = 0;
+
+            }
+            else {
+                finalResultParagraph.innerText="" 
+            }
+            
+        humanScoreVistual.innerText=("You have " + humanScore + " points")
+        computerScoreVistual.innerText=("computer have " + computerScore + " points")
+        roundJudge.innerText=(result)
+
+            
     
-    console.log(result);
-console.log(`Now you have ${humanScore} and the computer has ${computerScore}`);
 }
 /////////////////////////////////////////////////// its the rock button play
 const rockbtn = document.querySelector("#rockbtn");
@@ -60,20 +78,21 @@ paperbtn.addEventListener("click", () => {
     const scissorsbtn = document.querySelector("#scissorsbtn");
 scissorsbtn.addEventListener("click", () => {  
     updateScore("scissors");});
-
-
-
- //////////////////////////////////////// this line will run the final result and tells u who win that we need it in future
-    function finalResult() {
-        if (humanScore>computerScore){
-            console.log(`YAY YOU WON GOOD JOB BUDDY`)
-        }
-        else if (computerScore>humanScore){
-            console.log(`you lost! try again later`)
-        }
-        else {
-            console.log(`it is a draw game wellplayed`)
-        }
-    }
+    //////////////////////////////////////////
+    const scoreBoard = document.querySelector("#scoreboard");
+    const humanScoreVistual = document.createElement('p');
+    const computerScoreVistual = document.createElement('p');
+    const roundJudge = document.createElement('p');
+    const finalResultParagraph = document.createElement('p');
+    humanScoreVistual.className = "text";
+    computerScoreVistual.className = "text";
+    roundJudge.className = "text1";
+    finalResultParagraph.className = "text1";
+    scoreBoard.append(finalResultParagraph);
+    scoreBoard.append(roundJudge);
+    scoreBoard.append(humanScoreVistual);
+    scoreBoard.append(computerScoreVistual);
+    humanScoreVistual.innerText=("You have " + humanScore + " points");
+    computerScoreVistual.innerText=("computer have " + computerScore + " points");
 
 
